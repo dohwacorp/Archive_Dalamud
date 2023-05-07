@@ -26,6 +26,7 @@ public sealed class CommandManager : IServiceType, IDisposable
     private readonly Regex commandRegexDe = new(@"^„(?<command>.+)“ existiert nicht als Textkommando\.$", RegexOptions.Compiled);
     private readonly Regex commandRegexFr = new(@"^La commande texte “(?<command>.+)” n'existe pas\.$", RegexOptions.Compiled);
     private readonly Regex commandRegexCn = new(@"^^(“|「)(?<command>.+)(”|」)(出现问题：该命令不存在|出現問題：該命令不存在)。$", RegexOptions.Compiled);
+    private readonly Regex commandRegexKo = new(@"^(?<command>.+)[은는] 존재하지 않는 명령어입니다\.$", RegexOptions.Compiled);
     private readonly Regex currentLangCommandRegex;
 
     [ServiceManager.ServiceDependency]
@@ -40,6 +41,7 @@ public sealed class CommandManager : IServiceType, IDisposable
             ClientLanguage.English => this.commandRegexEn,
             ClientLanguage.German => this.commandRegexDe,
             ClientLanguage.French => this.commandRegexFr,
+            ClientLanguage.Korean => this.commandRegexKo,
             _ => this.currentLangCommandRegex,
         };
 
@@ -169,7 +171,8 @@ public sealed class CommandManager : IServiceType, IDisposable
             else
             {
                 // Always match for china, since they patch in language files without changing the ClientLanguage.
-                cmdMatch = this.commandRegexCn.Match(message.TextValue).Groups["command"];
+                // cmdMatch = this.commandRegexCn.Match(message.TextValue).Groups["command"];
+                cmdMatch = this.commandRegexKo.Match(message.TextValue).Groups["command"];
                 if (cmdMatch.Success)
                 {
                     // Yes, it's a Chinese fallback chat command.

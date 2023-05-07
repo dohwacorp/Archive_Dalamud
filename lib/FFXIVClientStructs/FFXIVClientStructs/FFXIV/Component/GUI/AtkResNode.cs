@@ -216,7 +216,9 @@ public unsafe partial struct AtkResNode : ICreatable
     [MemberFunction("E8 ?? ?? ?? ?? 66 2B F7")]
     public partial void SetWidth(ushort width);
 
-    [MemberFunction("E8 ?? ?? ?? ?? 80 7B 61 00")]
+    // 6.3
+    //[MemberFunction("E8 ?? ?? ?? ?? 80 7B 61 00")]
+    [MemberFunction("E8 ?? ?? ?? ?? 80 7B 5D 00")]
     public partial void SetHeight(ushort height);
 
     [MemberFunction("E8 ?? ?? ?? ?? 48 83 C7 08 48 83 EB 01 75 DC")]

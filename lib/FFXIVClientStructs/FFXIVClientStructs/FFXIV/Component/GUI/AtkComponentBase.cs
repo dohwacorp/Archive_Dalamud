@@ -1,4 +1,4 @@
-﻿namespace FFXIVClientStructs.FFXIV.Component.GUI;
+namespace FFXIVClientStructs.FFXIV.Component.GUI;
 
 public enum ComponentType : byte
 {
@@ -45,7 +45,9 @@ public unsafe partial struct AtkComponentBase
     [FieldOffset(0xA0)] public AtkResNode* AtkResNode;
     [FieldOffset(0xA8)] public AtkComponentNode* OwnerNode;
 
-    [MemberFunction("E8 ?? ?? ?? ?? 4C 8B F0 BF")]
+    // 6.38
+    //[MemberFunction("E8 ?? ?? ?? ?? 4C 8B F0 BF")]
+    [MemberFunction("E8 ?? ?? ?? ?? 8D 73 01")]
     public partial AtkResNode* GetTextNodeById(uint id);
 
     [MemberFunction("E8 ?? ?? ?? ?? 8D 56 9C")]

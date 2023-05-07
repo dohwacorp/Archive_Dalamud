@@ -378,7 +378,8 @@ public class StyleEditorWindow : Window
     private static string GetRandomName()
     {
         var data = Service<DataManager>.Get();
-        var names = data.GetExcelSheet<BNpcName>(ClientLanguage.English);
+        // var names = data.GetExcelSheet<BNpcName>(ClientLanguage.English);
+        var names = data.GetExcelSheet<BNpcName>(ClientLanguage.Korean);
         var rng = new Random();
 
         return names.ElementAt(rng.Next(0, names.Count() - 1)).Singular.RawString;
