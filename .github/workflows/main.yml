@@ -66,7 +66,7 @@ jobs:
         
         $branchName = $env:GH_BRANCH
         
-        if ($branchName -eq "master") {
+        if ($branchName -eq "main") {
           $branchName = "stg"
         }
         
