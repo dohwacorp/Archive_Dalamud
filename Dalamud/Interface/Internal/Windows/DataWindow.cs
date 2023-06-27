@@ -110,9 +110,7 @@ internal class DataWindow : Window
     private string flyText1 = string.Empty;
     private string flyText2 = string.Empty;
     private int flyIcon;
-    // 6.3
-    //private int flyDmgIcon;
-    // 6.3 end
+    private int flyDmgIcon;
     private Vector4 flyColor = new(1, 0, 0, 1);
 
     // ImGui fields
@@ -1220,9 +1218,7 @@ internal class DataWindow : Window
         ImGui.InputInt("Val2", ref this.flyVal2);
 
         ImGui.InputInt("Icon ID", ref this.flyIcon);
-        // 6.3
-        //ImGui.InputInt("Damage Icon ID", ref this.flyDmgIcon);
-        // 6.3 end
+        ImGui.InputInt("Damage Icon ID", ref this.flyDmgIcon);
         ImGui.ColorEdit4("Color", ref this.flyColor);
         ImGui.InputInt("Actor Index", ref this.flyActor);
         var sendColor = ImGui.ColorConvertFloat4ToU32(this.flyColor);
@@ -1237,11 +1233,8 @@ internal class DataWindow : Window
                 this.flyText1,
                 this.flyText2,
                 sendColor,
-                // 6.3
-                //unchecked((uint)this.flyIcon),;
-                //unchecked((uint)this.flyDmgIcon));
-                // 6.3 end, remove below
-                unchecked((uint)this.flyIcon));
+                unchecked((uint)this.flyIcon),
+                unchecked((uint)this.flyDmgIcon));
         }
     }
 

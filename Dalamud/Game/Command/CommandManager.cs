@@ -171,7 +171,6 @@ public sealed class CommandManager : IServiceType, IDisposable
             else
             {
                 // Always match for china, since they patch in language files without changing the ClientLanguage.
-                // cmdMatch = this.commandRegexCn.Match(message.TextValue).Groups["command"];
                 cmdMatch = this.commandRegexKo.Match(message.TextValue).Groups["command"];
                 if (cmdMatch.Success)
                 {

@@ -830,8 +830,7 @@ internal class InterfaceManager : IDisposable, IServiceType
                         garbageList.Add(rangeHandle);
                         fontConfig.PixelSnapH = true;
 
-                        // var sizedFont = ioFonts.AddFontFromFileTTF(fontPathJp, fontSize * io.FontGlobalScale, fontConfig, rangeHandle.AddrOfPinnedObject());
-                        var sizedFont = ioFonts.AddFontFromFileTTF(fontPathKr, fontSize * io.FontGlobalScale, fontConfig, rangeHandle.AddrOfPinnedObject());
+                        var sizedFont = ioFonts.AddFontFromFileTTF(fontPathJp, fontSize * io.FontGlobalScale, fontConfig, rangeHandle.AddrOfPinnedObject());
                         this.loadedFontInfo[sizedFont] = fontInfo;
                         foreach (var request in requests)
                             request.FontInternal = sizedFont;

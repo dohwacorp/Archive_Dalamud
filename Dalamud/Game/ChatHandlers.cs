@@ -100,6 +100,14 @@ public class ChatHandlers : IServiceType
                 new Regex(@"^Un servant a vendu (?<item>.+) pour (?<value>[\d,.]+) gil à (?:.+)\.$", RegexOptions.Compiled),
             }
         },
+        {
+            ClientLanguage.Korean,
+            new Regex[]
+            {
+                new Regex(@"^(?:.+)장터에 (?<origValue>[\d,.]+)길에 출품한 (?<item>.*)[이가] 판매되어 (?<value>[\d,.]+)길을 획득했습니다.$", RegexOptions.Compiled),
+                new Regex(@"^(?:.+)장터에 (?<origValue>[\d,.]+)길에 출품한 (?<item>.*)×(?<count>[\d,.]+)개가 판매되어 (?<value>[\d,.]+)길을 획득했습니다.$", RegexOptions.Compiled),
+            }
+        },
     };
 
     private readonly Regex urlRegex = new(@"(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?", RegexOptions.Compiled);
@@ -243,8 +251,10 @@ public class ChatHandlers : IServiceType
 
         var assemblyVersion = Assembly.GetAssembly(typeof(ChatHandlers)).GetName().Version.ToString();
 
-        chatGui.Print(string.Format(Loc.Localize("DalamudWelcome", "Dalamud vD{0} loaded."), assemblyVersion)
-                      + string.Format(Loc.Localize("PluginsWelcome", " {0} plugin(s) loaded."), pluginManager.InstalledPlugins.Count(x => x.IsLoaded)));
+        if (this.configuration.PrintDalamudWelcomeMsg) {
+            chatGui.Print(string.Format(Loc.Localize("DalamudWelcome", "Dalamud vD{0} loaded."), assemblyVersion)
+                          + string.Format(Loc.Localize("PluginsWelcome", " {0} plugin(s) loaded."), pluginManager.InstalledPlugins.Count(x => x.IsLoaded)));
+        }
 
         if (this.configuration.PrintPluginsWelcomeMsg)
         {
